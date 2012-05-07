@@ -172,7 +172,7 @@ use warnings;
 use strict;
 
 
-our $VERSION = '0.2';
+our $VERSION = 0.3;
 our $EVTDIR  = '/tmp';
 our $EVTEXT  = '.evt.yml';
 
