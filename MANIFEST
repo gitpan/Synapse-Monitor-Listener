@@ -4,9 +4,9 @@ lib/Synapse/Monitor/Listener/Action.pm
 lib/Synapse/Monitor/Listener/State.pm
 Makefile.PL
 MANIFEST			This list of files
+META.json			Module JSON meta-data (added by MakeMaker)
+META.yml			Module meta-data (added by MakeMaker)
 README
 scripts/synapse-monitor-listener-cli
 scripts/synapse-monitor-listener-service
 t/00-base.t
-META.yml                                 Module meta-data (added by MakeMaker)
-META.json                                Module JSON meta-data (added by MakeMaker)

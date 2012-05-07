@@ -166,12 +166,13 @@ picked up immediately.
 =cut
 package Synapse::Monitor::Listener;
 use base qw /Synapse::CLI::Config::Object/;
+use Synapse::Logger;
 use YAML::XS;
 use warnings;
 use strict;
 
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 our $EVTDIR  = '/tmp';
 our $EVTEXT  = '.evt.yml';
 
@@ -206,11 +207,24 @@ sub process {
     my $oldState = shift;
     my $newState = shift; 
     my $event    = shift;
-    $self->{action}->{$oldState} || return;
-    $self->{action}->{$oldState}->{$newState} || return;
+    $self->{action}->{$oldState} || do {
+        logger ($self->name() . ": no action specified for old state $oldState");
+        return;
+    };
+    $self->{action}->{$oldState}->{$newState} || do {
+        logger ($self->name() . ": no action specified for old state $oldState to new state $newState");
+        return;
+    };
+
+    logger ($self->name() . ": iterating actions for $oldState -> $newState");
     for my $action (@{$self->{action}->{$oldState}->{$newState}}) {
-        my $action = Synapse::Monitor::Listener::Action->new ($action) || next;
-        $action->process ($event);
+        logger ("action: $action");
+        my $action_obj = Synapse::Monitor::Listener::Action->new ($action);
+        if ($action_obj) { $action_obj->process ($event) }
+        else {
+            logger ("$action: cannot instantiate object - skipping");
+            next;
+        }
     };
 }
 

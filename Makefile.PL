@@ -9,9 +9,9 @@ WriteMakefile(
         'YAML::XS' => 0.38,
         'Time::HiRes' => 1.9719,
         'File::Touch' => 0.08,
-        'File::Copy' => 2.1,
 	'Daemon::Generic' => 0.82,
 	'Synapse::CLI::Config' => 0.1,
+	'Synapse::Logger' => 0.1,
     },
     EXE_FILES => [ './scripts/synapse-monitor-listener-cli', './scripts/synapse-monitor-listener-service' ],
 );

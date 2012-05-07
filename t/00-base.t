@@ -22,6 +22,7 @@ $Synapse::CLI::Config::ALIAS->{type}     = 'Synapse::CLI::Config::Type';
 $Synapse::CLI::Config::ALIAS->{action}   = 'Synapse::Monitor::Listener::Action';
 $Synapse::CLI::Config::ALIAS->{state}    = 'Synapse::Monitor::Listener::State';
 $Synapse::CLI::Config::ALIAS->{listener} = 'Synapse::Monitor::Listener';
+$Synapse::Logger::BASE_DIR = "./t/log";
 
 mkdir "./t/config";
 mkdir "./t/config/Synapse-Monitor-Listener-State";
